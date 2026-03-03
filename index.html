@@ -3035,7 +3035,8 @@ function marcarDARFPago(id){
 function renderTab2(mes,ano){
   const body=document.getElementById('t2-body');
   const foot=document.getElementById('t2-foot');
-  const rows=IR_PAGOS.filter(p=>parseInt(p.refAno)==parseInt(ano)&&parseInt(p.refMes)==mes);
+  // Mostra todas as DARFs do ano (não filtra por mês — competência ≠ vencimento)
+  const rows=IR_PAGOS.filter(p=>parseInt(p.refAno)==parseInt(ano));
   if(!rows.length){
     body.innerHTML='<tr><td colspan="7" class="t-empty">Nenhuma DARF registrada neste período.</td></tr>';
     if(foot) foot.style.display='none';
@@ -4049,6 +4050,7 @@ document.getElementById('lf-data').value=hoje();
 document.getElementById('ir-ref-mes').value=new Date().getMonth();
 document.getElementById('ir-dt').value=hoje();
 document.getElementById('tab-mes').value=new Date().getMonth();
+document.getElementById('ir-ref-mes').value=new Date().getMonth();
 // Carrega dados locais primeiro (rápido)
 carregarLS();
 populateMesaSel();
